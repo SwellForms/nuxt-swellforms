@@ -1,4 +1,9 @@
-import { defineNuxtModule, createResolver } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  createResolver,
+  addImportsDir,
+  addTypeTemplate,
+} from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -25,7 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
       getContents: () => `
         // Re-export all types from your runtime types file
         export * from '${resolver.resolve(runtimeDir, 'types')}'
-      `
+      `,
     })
   },
 
