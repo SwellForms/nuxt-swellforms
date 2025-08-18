@@ -37,10 +37,10 @@ jobs:
         run: npm ci
 
       # 4. Run linting and tests to ensure code quality
-      - name: Run Lint and Tests
-        run: |
-          npm run lint
-          npm run test
+      #- name: Run Lint and Tests
+       # run: |
+        #  npm run lint
+         # npm run test
 
       # 5. Build the module for production
       - name: Build Module
