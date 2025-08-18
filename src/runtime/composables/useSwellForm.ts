@@ -3,12 +3,13 @@ import { SwellForm, type SubmitResult, type ValidateResult, type FormField, type
 import { useNuxtApp } from '#app'
 
 /**
- * A reactive Nuxt composable for interacting with the SwellForms API.
+ * A reactive Nuxt composable for interacting with the Swell Forms API.
  *
  * @param formId The ID of the form you want to interact with.
  * @param initialValues Optional initial values for the form fields.
  * @returns A reactive API for managing form state and submissions.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSwellForm(formId: string, initialValues: Record<string, any> = {}) {
   const { $fetch } = useNuxtApp()
 
@@ -40,6 +41,7 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
    * @param id The field ID.
    * @param value The new value for the field.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setField = (id: string, value: any) => {
     form.setField(id, value)
     // Directly update the reactive values object
@@ -52,7 +54,8 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
    * @returns A promise that resolves with the array of form fields.
    */
   const fetchFields = async (): Promise<FormField[]> => {
-    const fields = await form.fetchFields($fetch)
+    // FIX: Cast $fetch to the type expected by the library
+    const fields = await form.fetchFields($fetch as typeof fetch)
     definitions.value = fields
     syncState()
     return fields
@@ -61,10 +64,12 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
   /**
    * Validates the form data against the server.
    * @param opts Optional object to specify which fields to validate.
+   * @param opts.only Optional array of field names to validate.
    * @returns A promise that resolves with the validation result.
    */
   const validate = async (opts?: { only?: string[] }): Promise<ValidateResult> => {
-    const result = await form.validate(opts, $fetch)
+    // FIX: Cast $fetch to the type expected by the library
+    const result = await form.validate(opts, $fetch as typeof fetch)
     syncState()
     return result
   }
@@ -72,10 +77,12 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
   /**
    * Submits the form data to the server.
    * @param overrides Optional object to override field values just for this submission.
+   * @param overrides.fields Optional record of fields to override.
    * @returns A promise that resolves with the submission result.
    */
-  const submit = async <T = any>(overrides?: { fields?: Record<string, Json> }): Promise<SubmitResult<T>> => {
-    const result = await form.submit<T>(overrides, $fetch)
+  const submit = async <T = unknown>(overrides?: { fields?: Record<string, Json> }): Promise<SubmitResult<T>> => {
+    // FIX: Cast $fetch to the type expected by the library
+    const result = await form.submit<T>(overrides, $fetch as typeof fetch)
     syncState()
     return result
   }

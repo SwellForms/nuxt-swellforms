@@ -137,8 +137,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// This will be auto-imported by Nuxt!
-// import { useSwellForm } from '../src/runtime/composables/useSwellForm'
+
+import { useSwellForm } from '../src/runtime/composables/useSwellForm'
 
 // --- IMPORTANT ---
 // Replace this with your actual Form ID from Swell Forms
@@ -167,7 +167,8 @@ async function handleSubmit() {
     formMessage.value = 'Thank you! Your form has been submitted successfully.'
     // Optionally reset the form
     // Object.keys(values).forEach(key => values[key] = '')
-  } else {
+  }
+  else {
     console.error('Submission failed:', result.errors)
     isSuccess.value = false
     formMessage.value = 'Please correct the errors and try again.'
