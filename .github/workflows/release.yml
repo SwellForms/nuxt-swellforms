@@ -36,17 +36,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Run linting and tests to ensure code quality
-      #- name: Run Lint and Tests
-       # run: |
-        #  npm run lint
-         # npm run test
+      # 4. Prepare Nuxt types for the build process (FIX ADDED HERE)
+      - name: Prepare Nuxt types
+        run: npx nuxi prepare playground
 
-      # 5. Build the module for production
+      # 5. Run linting and tests to ensure code quality
+      - name: Run Lint and Tests
+        run: |
+          npm run lint
+          npm run test
+
+      # 6. Build the module for production
       - name: Build Module
         run: npm run prepack
 
-      # 6. Bump version based on conventional commits and create a tag
+      # 7. Bump version based on conventional commits and create a tag
       - name: Bump version and create tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
@@ -55,14 +59,14 @@ jobs:
           # Use conventional commit messages to determine the version bump.
           default_bump: "patch" # If no special commit message is found, default to a patch.
 
-      # 7. Publish the new version to the npm registry
+      # 8. Publish the new version to the npm registry
       - name: Publish to NPM
         run: npm publish --access public
         env:
           # The NODE_AUTH_TOKEN is a secret that allows the action to authenticate with NPM.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 8. Create a GitHub Release from the new tag
+      # 9. Create a GitHub Release from the new tag
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
