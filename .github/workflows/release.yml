@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Prepare Nuxt types for the build process (FIX ADDED HERE)
+      # 4. Prepare Nuxt types for the build process
       - name: Prepare Nuxt types
         run: npx nuxi prepare playground
 
@@ -57,16 +57,20 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Use conventional commit messages to determine the version bump.
-          default_bump: "patch" # If no special commit message is found, default to a patch.
+          default_bump: "patch"
 
-      # 8. Publish the new version to the npm registry
+      # 8. Update package.json with the new version (FIX ADDED HERE)
+      - name: Update package.json version
+        run: npm version ${{ steps.tag_version.outputs.new_version }} --no-git-tag-version
+
+      # 9. Publish the new version to the npm registry
       - name: Publish to NPM
         run: npm publish --access public
         env:
           # The NODE_AUTH_TOKEN is a secret that allows the action to authenticate with NPM.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 9. Create a GitHub Release from the new tag
+      # 10. Create a GitHub Release from the new tag
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
