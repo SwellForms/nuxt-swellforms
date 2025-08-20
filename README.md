@@ -130,3 +130,12 @@ For any questions or issues related to SwellForms, please contact us at [Support
 For issues related to this SDK, please open an issue on the [GitHub repository](https://github.com/SwellForms/nuxt-swellforms)
 
 
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-swellforms/latest.svg
+[npm-version-href]: https://npmjs.com/package/nuxt-swellforms
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-swellforms.svg
+[npm-downloads-href]: https://npmjs.com/package/nuxt-swellforms
+[license-src]: https://img.shields.io/npm/l/nuxt-swellforms.svg
+[license-href]: https://npmjs.com/package/nuxt-swellforms
+[nuxt-src]: https://img.shields.io/badge/Nuxt-00DC82?logo=nuxt.js
+[nuxt-href]: https://nuxt.com
