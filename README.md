@@ -32,13 +32,13 @@ with a fully-typed, auto-imported composable.
 
     ```bash
     # Using pnpm
-    pnpm add -D nuxt-swellforms @swellforms/js
+    pnpm add -D nuxt-swellforms
 
     # Using yarn
-    yarn add --dev nuxt-swellforms @swellforms/js
+    yarn add --dev nuxt-swellforms
 
     # Using npm
-    npm install --save-dev nuxt-swellforms @swellforms/js
+    npm install --save-dev nuxt-swellforms
     ```
 
 2.  Add `nuxt-swellforms` to the `modules` section of your `nuxt.config.ts`:
