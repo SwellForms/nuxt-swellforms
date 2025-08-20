@@ -13,20 +13,18 @@ with a fully-typed, auto-imported composable.
 > use with caution in production environments.
 
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
+- [&nbsp;Release Notes](/CHANGELOG.md)
 
-<!-- - [🏀 Online playground](https://stackblitz.com/github/SwellForms/nuxt-swellforms?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://swellforms.com) -->
-
-## Features
+- [🏀 Online playground](https://stackblitz.com/github/SwellForms/nuxt-swellforms?file=playground%2Fapp.vue)
+- [📖 &nbsp;Documentation](https://swellforms.com/learn)
 
 ## Features
 
-- ✅ **`useSwellForm` Composable:** A reactive and intuitive way to manage form state.
-- ✅ **Auto Imports:** All composables and types are automatically available in your project.
-- ✅ **TypeScript Native:** Fully typed to provide the best developer experience.
-- ✅ **Server & Client Ready:** Uses Nuxt's native `$fetch` for universal rendering support.
-- ✅ **Lightweight:** Simply wraps the official `@swellforms/js` client without adding bloat.
+- **`useSwellForm` Composable:** A reactive and intuitive way to manage form state.
+- **Auto Imports:** All composables and types are automatically available in your project.
+- **TypeScript Native:** Fully typed to provide the best developer experience.
+- **Server & Client Ready:** Uses Nuxt's native `$fetch` for universal rendering support.
+- **Lightweight:** Simply wraps the official `@swellforms/js` client without adding bloat.
 
 ## Setup
 

@@ -3,7 +3,7 @@ import { SwellForm, type SubmitResult, type ValidateResult, type FormField, type
 import { useNuxtApp } from '#app'
 
 /**
- * A reactive Nuxt composable for interacting with the Swell Forms API.
+ * A reactive Nuxt composable for interacting with the SwellForms API.
  *
  * @param formId The ID of the form you want to interact with.
  * @param initialValues Optional initial values for the form fields.
@@ -54,7 +54,6 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
    * @returns A promise that resolves with the array of form fields.
    */
   const fetchFields = async (): Promise<FormField[]> => {
-    // FIX: Cast $fetch to the type expected by the library
     const fields = await form.fetchFields($fetch as typeof fetch)
     definitions.value = fields
     syncState()
@@ -62,26 +61,24 @@ export function useSwellForm(formId: string, initialValues: Record<string, any> 
   }
 
   /**
-   * Validates the form data against the server.
+   * Validates the form data against the API.
    * @param opts Optional object to specify which fields to validate.
    * @param opts.only Optional array of field names to validate.
    * @returns A promise that resolves with the validation result.
    */
   const validate = async (opts?: { only?: string[] }): Promise<ValidateResult> => {
-    // FIX: Cast $fetch to the type expected by the library
     const result = await form.validate(opts, $fetch as typeof fetch)
     syncState()
     return result
   }
 
   /**
-   * Submits the form data to the server.
+   * Submits the form data to the API.
    * @param overrides Optional object to override field values just for this submission.
    * @param overrides.fields Optional record of fields to override.
    * @returns A promise that resolves with the submission result.
    */
   const submit = async <T = unknown>(overrides?: { fields?: Record<string, Json> }): Promise<SubmitResult<T>> => {
-    // FIX: Cast $fetch to the type expected by the library
     const result = await form.submit<T>(overrides, $fetch as typeof fetch)
     syncState()
     return result

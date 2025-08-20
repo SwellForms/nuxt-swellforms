@@ -141,7 +141,7 @@ import { ref } from 'vue'
 import { useSwellForm } from '../src/runtime/composables/useSwellForm'
 
 // --- IMPORTANT ---
-// Replace this with your actual Form ID from Swell Forms
+// Replace this with your actual Form ID from SwellForms
 const FORM_ID = 'YOUR_FORM_ID_HERE'
 
 const { values, errors, processing, submit } = useSwellForm(FORM_ID, {

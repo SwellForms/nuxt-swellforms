@@ -6,7 +6,7 @@ import {
 } from '@nuxt/kit'
 
 /**
- * Module options TypeScript interface definition.
+ * Interface for module options.
  */
 export interface ModuleOptions {
   /**
@@ -33,18 +33,18 @@ export default defineNuxtModule<ModuleOptions>({
 
     const resolver = createResolver(import.meta.url)
 
-    // 1. Point to the runtime directory
+    // Resolve and add the runtime directory to the build transpile list
     const runtimeDir = resolver.resolve('./runtime')
     nuxt.options.build.transpile.push(runtimeDir)
 
-    // 2. Add composables for auto-imports
+    // Add composables directory for auto-imports
     addImportsDir(resolver.resolve(runtimeDir, 'composables'))
 
-    // 3. Add types for auto-imports and to `nuxt.d.ts`
+    // Adds the types template.
     addTypeTemplate({
       filename: 'types/nuxt-swellforms.d.ts',
       getContents: () => `
-        // Re-export all types from your runtime types file
+        // Re exports all types from the runtime types file
         export * from '${resolver.resolve(runtimeDir, 'types')}'
       `,
     })
